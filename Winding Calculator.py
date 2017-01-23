@@ -13,7 +13,12 @@ Out=[]
 aoffset=[]
 angle=[]
 rindex=[]
+aoffset1=[]
+aoffset2=[]
+sindex=[]
 c=0
+Ncph=0
+A=[]
 while(q<=((Nm/2)-1) and Ko%1!=0):
     Ko=((2*Ns)/(3*Nm))*(1+3*q)
     q=q+1
@@ -24,6 +29,7 @@ if(Ko%1==0 and Nm%2==0 and Ns%3==0 ):
     S= max(math.floor(Ns/Nm),1) # Coil Span
     print(S) #Delete this
     Ncph=Ns/3 #Number of Coils / Phase (3 phase is considered in this case)
+    print(Ncph)
     for i in range(0,Ns):
         In.append(i+1)
         Out.append((In[i]+S)%Ns)
@@ -43,11 +49,30 @@ if(Ko%1==0 and Nm%2==0 and Ns%3==0 ):
         c=In[rindex[i]]
         In[rindex[i]]=Out[rindex[i]]
         Out[rindex[i]]=c
+    for i in range(0,len(aoffset)):
+        aoffset1.append(abs(aoffset[i]))
+    aoffset2=sorted(aoffset1)
+    aoffset3=aoffset2[:int(Ncph)]
+    for i in range(0,len(aoffset3)):
+        for j in range(0,len(aoffset)):
+            if (aoffset3[i]==aoffset[j]):
+                sindex.append(j)
+                break
+    for i in range(0,len(sindex)):
+        k=int(sindex[i])
+        print(In[k])
 
+
+
+    ##aoffset1=sorted((aoffset))
     print(In)
     print(Out)
     print(aoffset)
     print(rindex)
+    print(aoffset1)
+    print(aoffset2)
+    print(aoffset3)
+    print(sindex)
 
 
 
