@@ -16,9 +16,11 @@ rindex=[]
 aoffset1=[]
 aoffset2=[]
 sindex=[]
+sindex1=[]
 c=0
 Ncph=0
 A=[]
+d=1
 while(q<=((Nm/2)-1) and Ko%1!=0):
     Ko=((2*Ns)/(3*Nm))*(1+3*q)
     q=q+1
@@ -35,7 +37,7 @@ if(Ko%1==0 and Nm%2==0 and Ns%3==0 ):
         Out.append((In[i]+S)%Ns)
         if(Out[i]==0):
             Out[i]=Ns
-        aoffset.append(i * (Nm / Ns) * 180)
+        aoffset.append(math.ceil(i * (Nm / Ns) * 180))
         if(abs(aoffset[i])>180):
             aoffset[i]=((aoffset[i]+180)%360)-180
         if(abs(aoffset[i])>90 and aoffset[i]>0):
@@ -55,24 +57,46 @@ if(Ko%1==0 and Nm%2==0 and Ns%3==0 ):
     aoffset3=aoffset2[:int(Ncph)]
     for i in range(0,len(aoffset3)):
         for j in range(0,len(aoffset)):
-            if (aoffset3[i]==aoffset[j]):
+
+            if (aoffset3[i]== aoffset1[j]):
                 sindex.append(j)
-                break
-    for i in range(0,len(sindex)):
-        k=int(sindex[i])
-        print(In[k])
 
 
 
     ##aoffset1=sorted((aoffset))
-    print(In)
-    print(Out)
+    ##print(In)
+    ##print(Out)
     print(aoffset)
     print(rindex)
     print(aoffset1)
     print(aoffset2)
     print(aoffset3)
     print(sindex)
+    print(set(sindex))
+    sindex1=list(set(sindex))
+
+## PRINTING PHASE A
+    print("PHASE A WINDING")
+    for i in range(0, len(sindex1)):
+        k = int(sindex1[i])
+        print(In[k], '\t' , Out[k])
+
+    print("")
+    print("")
+    print("")
+
+## PRINTING PHASE B
+    print("PHASE B WINDING")
+    for i in range(0, len(sindex1)):
+        k = int(sindex1[i])
+        print(int((In[k]+Ko)%Ns), '\t' , int((Out[k]+Ko)%Ns))
+
+## PRINTING PHASE C
+    print("PHASE C WINDING")
+    for i in range(0, len(sindex1)):
+        k = int(sindex1[i])
+        print(int((In[k]+2*Ko)%Ns), '\t' , int((Out[k]+2*Ko)%Ns))
+
 
 
 
