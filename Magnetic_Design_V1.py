@@ -13,6 +13,8 @@ Rr=float(input("Enter the rotor radius"))
 Rm=float(input("Enter the radius at which the magnet ends"))
 amc=float(input("Enter the manget fraction")) ## Remember pole embrace in Maxwell tool
 Br=float(input("Enter the Br"))
+lstk=float(input("Enter the stack length"))
+wtb=float(input("Enter the width of teeth"))
 kl=0.95
 kr=1.1
 pi=math.pi
@@ -29,6 +31,11 @@ ksl=[]
 print(Bg)
 tetat=float(input("Enter the teeth angle"))
 tetas=float(input("Enter the slot angle"))
+Rs=Rs*1e-3
+Rr=Rr*1e-3
+Rm=Rm*1e-3
+lstk=lstk*1e-3
+wtb=wtb*1e-3
 #for i in range(0,int((tetas*100/2)-(tetat*100/2))+1):
 #    g1.append(1-((180/Nm)*(Rs/g)*(((float(i)/100)+tetas/2)+tetat/2)))
 #for j in range(0,int((tetas*100/2)-(tetat*100/2))+1):
@@ -45,6 +52,13 @@ ksl.append(0)
 
 print(teta)
 print(ksl)
-plt.interactive(True)
+phit=Bg*((2*pi*lstk*Rs)/Ns)
+print(phit)
+Btn=(phit)/(0.9*lstk*wtb)
+print(Btn)
+"""plt.interactive(True)
+plt.show()
+plt.figure()
 plt.plot(teta,ksl)
-input("Enter something")
+plt.show()
+input("Enter something")"""
