@@ -15,6 +15,7 @@ amc=float(input("Enter the manget fraction")) ## Remember pole embrace in Maxwel
 Br=float(input("Enter the Br"))
 lstk=float(input("Enter the stack length"))
 wtb=float(input("Enter the width of teeth"))
+wsn=float(input("Enter the width of the yoke"))
 kl=0.95
 kr=1.1
 pi=math.pi
@@ -36,6 +37,7 @@ Rr=Rr*1e-3
 Rm=Rm*1e-3
 lstk=lstk*1e-3
 wtb=wtb*1e-3
+wsn=wsn*1e-3
 #for i in range(0,int((tetas*100/2)-(tetat*100/2))+1):
 #    g1.append(1-((180/Nm)*(Rs/g)*(((float(i)/100)+tetas/2)+tetat/2)))
 #for j in range(0,int((tetas*100/2)-(tetat*100/2))+1):
@@ -56,6 +58,8 @@ phit=Bg*((2*pi*lstk*Rs)/Ns)
 print(phit)
 Btn=(phit)/(0.9*lstk*wtb)
 print(Btn)
+Bsn=(phit)/(0.9*lstk*wsn)
+print(Bsn)
 """plt.interactive(True)
 plt.show()
 plt.figure()
